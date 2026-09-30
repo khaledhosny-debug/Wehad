@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>وهاد | بين اللحظة وحلاها</title>
+<meta name="description" content="اطلبي حلويات وهاد من ذا شفز أو جاهز أو هنقرستشين.">
+<meta name="theme-color" content="#3a2a26">
+<meta property="og:title" content="وهاد | بين اللحظة وحلاها">
+<meta property="og:description" content="اطلبي حلويات وهاد من ذا شفز أو جاهز أو هنقرستشين.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preload" as="image" href="assets/cover.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=El+Messiri:wght@600;700&display=swap">
+<style>
+  :root {
+    --rose: #9b4a45;
+    --ivory: #f7efe9;
+    --glass: rgba(255, 255, 255, 0.16);
+    --glass-hover: rgba(255, 255, 255, 0.24);
+    --glass-border: rgba(255, 255, 255, 0.38);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    --text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Cairo", system-ui, sans-serif;
+    color: #fff;
+    background: #2b211e;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* الخلفية: نسخة مغبّشة تملا الشاشة على الديسكتوب، والصورة الأصلية بألوانها الطبيعية في النص */
+  .bg-fill {
+    position: fixed; inset: -40px;
+    background: url(assets/cover.webp) center / cover no-repeat;
+    filter: blur(28px) brightness(0.8);
+    transform: scale(1.1);
+  }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .stage::before {
+    content: "";
+    position: absolute; inset: 0; z-index: -2;
+    background: url(assets/cover.webp) center 30% / cover no-repeat;
+  }
+  /* تدرّج خفيف محايد فوق وتحت بس، عشان الكلام يتقري من غير ما يغيّر لون الصورة */
+  .stage::after {
+    content: "";
+    position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0) 30%),
+      linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.12) 40%, rgba(0,0,0,0) 58%);
+  }
+
+  header {
+    display: flex; flex-direction: column; align-items: center;
+    padding: calc(env(safe-area-inset-top) + 18px) 20px 0;
+    text-align: center;
+  }
+  .logo {
+    width: 92px; height: 68px;
+    border-radius: 999px;
+    background: rgba(247, 239, 233, 0.82);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: grid; place-items: center;
+    padding: 4px 12px;
+  }
+  .logo img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+  h1 {
+    margin-top: 10px;
+    font-family: "El Messiri", "Cairo", serif;
+    font-size: clamp(26px, 7.5vw, 34px);
+    font-weight: 700;
+    line-height: 1.35;
+    text-shadow: var(--text-shadow);
+  }
+  .sub {
+    margin-top: 2px;
+    font-size: 15px; font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    text-shadow: var(--text-shadow);
+  }
+
+  /* مساحة فاضية في النص عشان وش الموديل والعلبة يبانوا */
+  .spacer { flex: 1; min-height: 24vh; }
+
+  .links {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 0 16px;
+  }
+  .btn {
+    display: flex; align-items: center; gap: 12px;
+    min-height: 60px;
+    padding: 8px 12px 8px 16px;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.25);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    color: #fff;
+    text-decoration: none;
+    transition: background .15s, transform .15s;
+  }
+  .btn:hover { background: var(--glass-hover); }
+  .btn:active { transform: scale(0.98); background: var(--glass-hover); }
+  .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .btn img {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.85);
+    object-fit: cover;
+    background: #fff;
+  }
+  .btn .label {
+    flex: 1; min-width: 0;
+    font-size: 16px; font-weight: 700; line-height: 1.3;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+  }
+  .btn svg { width: 20px; height: 20px; flex-shrink: 0; opacity: 0.9; transform: scaleX(-1); }
+
+  footer {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    padding: 16px 16px calc(env(safe-area-inset-bottom) + 18px);
+  }
+  .share {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff; font: 600 14px "Cairo", sans-serif;
+    cursor: pointer;
+  }
+  .share svg { width: 16px; height: 16px; }
+  .privacy {
+    background: none; border: 0;
+    color: rgba(255,255,255,0.8);
+    font: 12px "Cairo", sans-serif;
+    text-decoration: underline; text-underline-offset: 4px;
+    cursor: pointer;
+    text-shadow: var(--text-shadow);
+  }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 24px);
+    transform: translateX(-50%);
+    padding: 8px 20px; border-radius: 999px;
+    background: rgba(30, 22, 20, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 14px; white-space: nowrap;
+    z-index: 60;
+  }
+
+  .dialog {
+    position: fixed; inset: 0; z-index: 50;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding: 16px;
+  }
+  .dialog[hidden], .toast[hidden] { display: none; }
+  .dialog .scrim {
+    position: absolute; inset: 0; border: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .dialog .card {
+    position: relative; width: 100%; max-width: 420px;
+    padding: 24px;
+    border-radius: 24px;
+    background: rgba(247, 239, 233, 0.96);
+    color: #5a2a27;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .dialog h2 { font: 700 19px "El Messiri", "Cairo", serif; }
+  .dialog p { margin-top: 10px; font-size: 14px; line-height: 1.8; color: var(--rose); }
+  .dialog .current { font-size: 12px; opacity: 0.8; }
+  .dialog .actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .dialog .actions button {
+    padding: 12px; border-radius: 999px;
+    font: 600 14px "Cairo", sans-serif; cursor: pointer;
+  }
+  .dialog .primary { background: var(--rose); color: var(--ivory); border: 0; }
+  .dialog .secondary { background: transparent; color: var(--rose); border: 1px solid rgba(155,74,69,0.4); }
+
+  /* شاشات قصيرة (زي iPhone SE): نصغّر المسافات */
+  @media (max-height: 700px) {
+    .logo { width: 80px; height: 58px; }
+    h1 { font-size: 26px; margin-top: 6px; }
+    .spacer { min-height: 14vh; }
+    .btn { min-height: 54px; }
+    .btn img { width: 40px; height: 40px; }
+  }
+  /* الديسكتوب: الصورة في إطار في النص والخلفية المغبّشة حواليها */
+  @media (min-width: 600px) {
+    .stage {
+      margin: 24px auto;
+      min-height: calc(100vh - 48px);
+      min-height: calc(100dvh - 48px);
+      border-radius: 32px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-fill" aria-hidden="true"></div>
+
+  <main class="stage">
+    <header>
+      <div class="logo"><img src="assets/logo.png" alt="شعار وهاد" width="112" height="88"></div>
+      <h1>بين اللحظة وحلاها</h1>
+      <p class="sub">اطلبي من منصتك المفضلة</p>
+    </header>
+
+    <div class="spacer"></div>
+
+    <nav aria-label="منصات الطلب">
+      <ul class="links">
+        <li>
+          <a class="btn" data-name="thechefz" href="https://thechefzco.app.link/C7nvD7wGv0b" target="_blank" rel="noopener noreferrer">
+            <img src="assets/chefz.jpg" alt="" width="44" height="44">
+            <span class="label">ذا شفز | thechefz</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="btn" data-name="jahez" href="https://jahez.go.link/4mC6d" target="_blank" rel="noopener noreferrer">
+            <img src="assets/jahez.jpg" alt="" width="44" height="44">
+            <span class="label">جاهز | jahez</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="btn" data-name="hungerstation" href="https://hungerstation.go.link/?c=SA&amp;s=c&amp;v=97396&amp;so=mls&amp;adj_t=1sdhhuza_1spi9ypp&amp;adj_og_title=%D9%88%D9%87%D8%A7%D8%AF&amp;adj_og_image=https://images.deliveryhero.io/image/hungerstation/restaurant/logo_ar/9bf5371fc67cd2d17d1e90c537366c47.PNG" target="_blank" rel="noopener noreferrer">
+            <img src="assets/hungerstation.jpg" alt="" width="44" height="44">
+            <span class="label">هنقرستيشن | HungerStation</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      <button class="share" type="button" id="share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        مشاركة الصفحة
+      </button>
+      <button class="privacy" type="button" id="privacy-open">الخصوصية والقياس</button>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" hidden>
+    <button class="scrim" type="button" aria-label="إغلاق" id="dialog-close"></button>
+    <div class="card">
+      <h2 id="dialog-title">إعدادات الخصوصية والقياس</h2>
+      <p>روابط الطلب تعمل دائمًا ولا تحتاج أي موافقة. قياس الزيارات والنقرات اختياري تمامًا، ويساعدنا فقط على معرفة المنصات الأكثر استخدامًا.</p>
+      <p class="current" id="dialog-current" hidden></p>
+      <div class="actions">
+        <button class="primary" type="button" data-choice="granted">السماح بالقياس</button>
+        <button class="secondary" type="button" data-choice="denied">الضروري فقط</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  var CONSENT_KEY = "wehad_measurement_consent";
+
+  function getConsent() {
+    try {
+      var v = localStorage.getItem(CONSENT_KEY);
+      return v === "granted" || v === "denied" ? v : null;
+    } catch (e) { return null; }
+  }
+  function setConsent(v) {
+    try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
+  }
+
+  // نقطة ربط القياس: بتبعت للـ dataLayer (GTM) ولـ Meta Pixel لو متركّبين، وبس بعد الموافقة
+  function track(event, params) {
+    if (getConsent() !== "granted") return;
+    params = params || {};
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: event }, params));
+    if (typeof window.fbq === "function") window.fbq("trackCustom", event, params);
+  }
+
+  var toastEl = document.getElementById("toast");
+  var toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.hidden = true; }, 2600);
+  }
+
+  document.querySelectorAll(".btn").forEach(function (a, i) {
+    a.addEventListener("click", function () {
+      track("wehad_link_click", { link_name: a.dataset.name, link_position: i + 1, link_url: a.href });
+    });
+  });
+
+  document.getElementById("share").addEventListener("click", async function () {
+    track("wehad_share_click");
+    var url = location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "وهاد", text: "بين اللحظة وحلاها", url: url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      toast("تم نسخ رابط الصفحة");
+    } catch (e) {
+      if (e && e.name === "AbortError") return;
+      toast("تعذّر المشاركة، انسخي الرابط من شريط العنوان");
+    }
+  });
+
+  var dialog = document.getElementById("dialog");
+  var currentEl = document.getElementById("dialog-current");
+  function openDialog() {
+    var c = getConsent();
+    currentEl.hidden = !c;
+    if (c) currentEl.textContent = "اختيارك الحالي: " + (c === "granted" ? "السماح بالقياس" : "الضروري فقط");
+    dialog.hidden = false;
+  }
+  function closeDialog() { dialog.hidden = true; }
+  document.getElementById("privacy-open").addEventListener("click", openDialog);
+  document.getElementById("dialog-close").addEventListener("click", closeDialog);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeDialog(); });
+  dialog.querySelectorAll("[data-choice]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var choice = b.dataset.choice;
+      setConsent(choice);
+      closeDialog();
+      if (choice === "granted") {
+        track("wehad_measurement_consent", { consent: "granted" });
+        track("wehad_page_view");
+        toast("تم تمكين القياس، شكرًا لك");
+      } else {
+        toast("تم حفظ اختيارك: الضروري فقط");
+      }
+    });
+  });
+
+  track("wehad_page_view");
+</script>
+</body>
+</html>
